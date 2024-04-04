@@ -5,20 +5,24 @@ const UserRepositoryInMemory = require("../repositories/userRepository/UserRepos
 const UserCreateService = require("../services/UserServices/UserCreateService")
 
 
-describe("taskCreateService", () =>{
+describe("taskListService", () =>{
     let taskRepository = null
     let taskServiceCreate = null
     let taskServiceList = null
     let userRepository = null
     let userCreateService = null
 
-    it("task list", async () =>{
-
+    beforeEach(()=>{
         userRepository = new UserRepositoryInMemory()
         userCreateService = new UserCreateService(userRepository)
         taskRepository = new TaskRepositoryInMemory()
         taskServiceCreate = new TaskCreateService(taskRepository)
-        taskServiceList = new TaskListService(taskRepository)
+        taskListService = new TaskListService(taskRepository)
+    })
+
+    it("should be able to list Tasks", async () =>{
+
+        
 
         const user = {
             name: "user test",
@@ -46,9 +50,9 @@ describe("taskCreateService", () =>{
         await taskServiceCreate.execute(task2, userCreate.user_id)
         await taskServiceCreate.execute(task3, userCreate.user_id)
 
-        const listTasks = await taskServiceList.execute(userCreate.user_id)
+        const listTasks = await taskListService.execute(userCreate.user_id)
 
-        console.log(listTasks);
+        //console.log(listTasks);
 
         expect(listTasks).toEqual(expect.arrayContaining(listTasks))
     })

@@ -18,13 +18,9 @@ class TaskRepositoryInMemory{
         return task
     }
 
-    async list({user_id}){
-        const user = this.userRepository.listUserId({user_id})
-
-        if(user){
-            return this.tasks
-        }
-        return "ERRO"
+    async list(){
+     return this.tasks
+       
     }
 
     async listById({task_id}){
@@ -43,6 +39,12 @@ class TaskRepositoryInMemory{
             return task
         }
         return "ERRO"
+    }
+
+    async deleteTask({task_id}){
+        const index = this.tasks.findIndex(task => task.task_id === task_id)
+
+        return this.tasks.slice(index, 1)
     }
 }
 

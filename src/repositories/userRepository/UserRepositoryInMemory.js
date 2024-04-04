@@ -18,13 +18,13 @@ class UserRepositoryInMemory{
         return this.users
     }
 
-    async listUserId({id}){
-        const user = this.users.find(user => user.user_id === id)
+    async listUserId({user_id}){
+        const user = this.users.find(user => user.user_id === user_id)
         return user
     }
 
-    async updateUser({id, name, email}){
-        const user = this.listUserId({user_id: id})
+    async updateUser({user_id, name, email}){
+        const user = this.listUserId({user_id})
 
         user.name = name ?? user.name
         user.email = email ?? user.email

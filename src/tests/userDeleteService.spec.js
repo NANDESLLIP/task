@@ -9,7 +9,7 @@ describe("UserDeleteService", () => {
     let userDeleteService = null
     let userListService = null
 
-    it("user should be possible to update an user", async () =>{
+    it("delete user", async () =>{
         userRepository = new UserRepositoryInMemory()
         userCreateService = new UserCreateService(userRepository)
         userListService = new UserListService(userRepository)
@@ -29,18 +29,15 @@ describe("UserDeleteService", () => {
         await userCreateService.execute(user)
         const userCreate = await userCreateService.execute(user2)
 
-        const listUser = await userListService.execute()
-
-        console.log(listUser);
+        //const listUser = await userListService.execute()
+        //console.log(listUser);
 
         userDeleteService = new UserDeleteService(userRepository)
         const userDelete = await userDeleteService.execute(userCreate.user_id)
 
-        const listUser2 = await userListService.execute()
+        //const listUser2 = await userListService.execute()
 
         expect(userDelete).not.toBeUndefined();
-
-
-        console.log(listUser2);
+        //console.log(listUser2);
     })
 })

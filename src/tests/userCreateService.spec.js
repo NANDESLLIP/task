@@ -22,13 +22,13 @@ describe("userCreateService", () => {
 
         const userCreated = await userCreateService.execute(user)
 
-        
+        //console.log(`id: ${userCreated.id}`);
 
         expect(userCreated).toHaveProperty("user_id")
 
         expect(userCreated).toHaveProperty("name", userCreated.name)
 
-        //console.log(`id: ${userCreated.id}`);
+        
 
     })
 })

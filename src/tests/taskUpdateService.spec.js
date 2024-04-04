@@ -5,13 +5,13 @@ const UserRepository = require("../repositories/userRepository/UserRepositoryInM
 const UserCreateService = require("../services/UserServices/UserCreateService")
 
 
-describe("taskCreateService", () =>{
+describe("taskUpdateService", () =>{
     let taskRepository = null
     let taskService = null
     let taskUpdateService = null
 
     
-    it("user should be possible to update an user", async () =>{
+    it("user should be possible to update an task", async () =>{
         const userRepository = new UserRepository()
         const userCreateService = new UserCreateService(userRepository)
         taskRepository = new TaskRepositoryInMemory()
@@ -38,8 +38,8 @@ describe("taskCreateService", () =>{
         taskCreate.description = "Update description"
 
         const updateTask = await taskUpdateService.execute(taskCreate, userCreate.user_id)
-        console.log(updateTask);
+        ///console.log(updateTask);
 
-        expect(updateTask).toHaveProperty("name", updateTask.name)
+        expect(updateTask).toHaveProperty("name", 'Update')
     })
 })

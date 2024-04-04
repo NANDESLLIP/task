@@ -3,8 +3,8 @@ class TaskListService{
         this.taskRepository = taskRepository
     }
 
-    async execute({user_id}){
-      const tasks = await this.taskRepository.list({user_id})
+    async execute(){
+      const tasks = await this.taskRepository.list()
       return tasks  
     }
 }
